@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preparado Para Francisco Cuevas | Zytrom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #06070a;
+            --surface: #0d0f14;
+            --surface-2: #12151c;
+            --border: rgba(255,255,255,0.06);
+            --border-hover: rgba(212, 175, 55, 0.3);
+            --gold: #d4af37;
+            --gold-light: #e8c84a;
+            --gold-dim: rgba(212, 175, 55, 0.1);
+            --white: #f0f0f0;
+            --gray: #8a8d96;
+            --gray-light: #b8bac2;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--white);
+            background: var(--bg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+        /* ========== HEADER ========== */
+        .header {
+            padding: 48px 0 0;
+            text-align: center;
+        }
+        .header-brands {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+        .brand-name {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .brand-zytrom { color: var(--gold); }
+        .brand-divider {
+            width: 1px;
+            height: 24px;
+            background: var(--border);
+        }
+        .brand-prospect { color: var(--gray); }
+        .header-badge {
+            display: inline-block;
+            background: var(--gold-dim);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            color: var(--gold);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 32px;
+        }
+        .header h1 {
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 16px;
+        }
+        .header h1 span { color: var(--gold); }
+        .header p {
+            font-size: 17px;
+            color: var(--gray-light);
+            max-width: 580px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ========== STATS BAR ========== */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            padding: 48px 0;
+            margin: 48px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+        .stat { text-align: center; }
+        .stat .number {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--gold);
+            display: block;
+        }
+        .stat .label {
+            font-size: 12px;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* ========== DELIVERABLE SECTIONS ========== */
+        .deliverables { padding: 0 0 80px; }
+        .deliverables-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 32px;
+        }
+
+        .accordion-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+        .accordion-item:hover { border-color: var(--border-hover); }
+        .accordion-item.active { border-color: rgba(212, 175, 55, 0.2); }
+
+        .accordion-header {
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-family: inherit;
+            text-align: left;
+            padding: 24px 28px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+        .accordion-header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .accordion-number {
+            width: 36px;
+            height: 36px;
+            background: var(--gold-dim);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+        .accordion-title {
+            font-size: 17px;
+            font-weight: 700;
+        }
+        .accordion-tag {
+            font-size: 11px;
+            color: var(--gray);
+            background: rgba(255,255,255,0.04);
+            padding: 4px 10px;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+        .accordion-arrow {
+            font-size: 20px;
+            color: var(--gray);
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+        .accordion-item.active .accordion-arrow { transform: rotate(45deg); color: var(--gold); }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        .accordion-item.active .accordion-body { max-height: 3000px; }
+        .accordion-content {
+            padding: 0 28px 28px;
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+        }
+        .accordion-content h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 12px;
+            margin-top: 20px;
+        }
+        .accordion-content h4:first-child { margin-top: 0; }
+        .accordion-content p {
+            font-size: 15px;
+            color: var(--gray-light);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        .accordion-content ul {
+            list-style: none;
+            margin-bottom: 16px;
+        }
+        .accordion-content ul li {
+            padding: 6px 0;
+            font-size: 14px;
+            color: var(--gray-light);
+            padding-left: 20px;
+            position: relative;
+        }
+        .accordion-content ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+        .accordion-content .highlight-box {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 16px 0;
+        }
+        .accordion-content .highlight-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+        }
+        .live-page-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gold-dim);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            color: var(--gold);
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            margin-top: 16px;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .live-page-link:hover {
+            background: rgba(212, 175, 55, 0.15);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .angle-card {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 12px;
+        }
+        .angle-card h5 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+        .angle-card .angle-headline {
+            font-size: 14px;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .angle-card p {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        /* ========== PROCESS ========== */
+        .process {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+        }
+        .process-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .process h2 {
+            font-size: 28px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 48px;
+            letter-spacing: -0.5px;
+        }
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .process-step {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+        .process-step:hover { border-color: var(--border-hover); }
+        .process-step .step-num {
+            width: 40px;
+            height: 40px;
+            background: var(--gold-dim);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--gold);
+            margin: 0 auto 16px;
+        }
+        .process-step h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .process-step p {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* ========== CTA ========== */
+        .cta-section {
+            padding: 80px 0 100px;
+            text-align: center;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, var(--surface) 0%, rgba(212, 175, 55, 0.03) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 24px;
+            padding: 64px 48px;
+        }
+        .cta-box h2 {
+            font-size: clamp(24px, 3.5vw, 36px);
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+        .cta-box p {
+            font-size: 16px;
+            color: var(--gray-light);
+            max-width: 520px;
+            margin: 0 auto 36px;
+            line-height: 1.7;
+        }
+        .cta-button {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--bg);
+            padding: 16px 40px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 16px;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+        }
+        .cta-button:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.25);
+        }
+        .cta-note {
+            font-size: 13px;
+            color: var(--gray);
+            margin-top: 16px;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+        .footer p {
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        /* ========== ANIMATIONS ========== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 810px) {
+            .process-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-bar { gap: 32px; }
+        }
+        @media (max-width: 480px) {
+            .process-grid { grid-template-columns: 1fr; }
+            .header-brands { gap: 16px; }
+            .brand-name { font-size: 12px; letter-spacing: 1px; }
+            .cta-box { padding: 40px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <section class="header">
+        <div class="container">
+            <div class="header-brands reveal">
+                <span class="brand-name brand-zytrom">Zytrom</span>
+                <div class="brand-divider"></div>
+                <span class="brand-name brand-prospect">Francisco en las Redes</span>
+            </div>
+            <div class="header-badge reveal">Preparado exclusivamente para Francisco Cuevas</div>
+            <h1 class="reveal">Un paquete de marketing completo. <span>Creado para tu negocio.</span></h1>
+            <p class="reveal">Analizamos tu marca, tu audiencia y tu mercado. Identificamos las oportunidades que mas impacto pueden tener. Y construimos los materiales listos para implementar.</p>
+        </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <div class="container">
+        <div class="stats-bar reveal">
+            <div class="stat">
+                <span class="number">15+</span>
+                <span class="label">Fuentes investigadas</span>
+            </div>
+            <div class="stat">
+                <span class="number">7</span>
+                <span class="label">Oportunidades identificadas</span>
+            </div>
+            <div class="stat">
+                <span class="number">5</span>
+                <span class="label">Angulos de campana</span>
+            </div>
+            <div class="stat">
+                <span class="number">2</span>
+                <span class="label">Paginas construidas</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- DELIVERABLES -->
+    <section class="deliverables">
+        <div class="container">
+            <div class="deliverables-title reveal">Lo que preparamos</div>
+
+            <!-- ACCORDION 1: Research Snapshot -->
+            <div class="accordion-item reveal">
+                <button class="accordion-header">
+                    <div class="accordion-header-left">
+                        <div class="accordion-number">01</div>
+                        <span class="accordion-title">Analisis de tu negocio y mercado</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <span class="accordion-tag">Investigacion</span>
+                        <span class="accordion-arrow">+</span>
+                    </div>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <h4>Resumen de hallazgos</h4>
+                        <p>Analizamos tu sitio web, redes sociales, y presencia publica para entender tu marca, tu audiencia y tu posicionamiento. Esto es lo que encontramos:</p>
+
+                        <h4>Tu marca</h4>
+                        <ul>
+                            <li>928K seguidores en Instagram, 800K+ en TikTok. Tu alcance es masivo.</li>
+                            <li>5 años con Grant Cardone. Una credencial que pocos en el espacio de trading en espanol pueden igualar.</li>
+                            <li>Posicionamiento anti-hype: "No es un curso, es un cambio de mentalidad." Eso te separa de los demas.</li>
+                            <li>Voz directa, autentica, sin filtros. Tu audiencia confie en ti porque no vendes humo.</li>
+                        </ul>
+
+                        <h4>Tu audiencia</h4>
+                        <ul>
+                            <li>Hispanohablantes de 20-40 años en EEUU y LATAM que quieren aprender a invertir</li>
+                            <li>Muchos son inmigrantes o primera generacion. Trabajadores, ambiciosos, escepticos de los "gurus"</li>
+                            <li>Dolores principales: no saben por donde empezar, todo esta en ingles, tienen miedo de perder dinero, han visto estafas</li>
+                        </ul>
+
+                        <h4>Oportunidades identificadas</h4>
+                        <div class="highlight-box">
+                            <p><strong style="color:var(--gold)">1. Sin captura de email.</strong> Tu sitio no tiene formulario de email. Las personas que visitan y no estan listas para pagar $19.99 se van y no regresan. Estas perdiendo trafico valioso.</p>
+                        </div>
+                        <div class="highlight-box">
+                            <p><strong style="color:var(--gold)">2. Landing page sin estructura de conversion.</strong> Tu pagina de WordPress muestra tu oferta, pero no sigue un flujo de problema-solucion-prueba-oferta que maximice conversiones.</p>
+                        </div>
+                        <div class="highlight-box">
+                            <p><strong style="color:var(--gold)">3. Testimonios en formato screenshot.</strong> Tienes 9 testimonios en tu sitio, pero son capturas de pantalla pequenas. Dificiles de leer, especialmente en movil. No estan haciendo su trabajo.</p>
+                        </div>
+                        <div class="highlight-box">
+                            <p><strong style="color:var(--gold)">4. Sin secuencia de emails.</strong> No hay nurture, no hay follow-up, no hay bienvenida automatica. Cada persona que no compra en la primera visita se pierde.</p>
+                        </div>
+                        <div class="highlight-box">
+                            <p><strong style="color:var(--gold)">5. Mentoria 1-a-1 invisible.</strong> Tu oferta de sesiones privadas no tiene precio, no tiene estructura, y no tiene seccion dedicada. Es probablemente tu oferta de mayor valor y nadie sabe que existe.</p>
+                        </div>
+                        <div class="highlight-box">
+                            <p><strong style="color:var(--gold)">6. Grant Cardone no esta visible.</strong> 5 años con Grant Cardone es una de tus mejores credenciales. Pero esta mencionado en un parrafo de texto. Sin fotos, sin logos, sin seccion dedicada.</p>
+                        </div>
+                        <div class="highlight-box">
+                            <p><strong style="color:var(--gold)">7. Sin FAQ que maneje objeciones.</strong> Las preguntas mas comunes de tu audiencia (es estafa? necesito experiencia? cuanto dinero necesito?) no se responden en tu pagina.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACCORDION 2: Campaign Angles -->
+            <div class="accordion-item reveal">
+                <button class="accordion-header">
+                    <div class="accordion-header-left">
+                        <div class="accordion-number">02</div>
+                        <span class="accordion-title">Angulos de campana</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <span class="accordion-tag">5 angulos</span>
+                        <span class="accordion-arrow">+</span>
+                    </div>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <p>Creamos 5 angulos de campana distintos para tu negocio. Cada uno ataca un dolor o motivacion diferente de tu audiencia.</p>
+
+                        <div class="angle-card">
+                            <h5>Angulo 1: "En Tu Idioma"</h5>
+                            <div class="angle-headline">"Aprende a invertir en la bolsa de valores. En espanol. Sin humo."</div>
+                            <p>Posiciona la barrera del idioma como el problema real. Francisco no es otro guru. Es el que habla tu idioma y vivio tu historia.</p>
+                        </div>
+                        <div class="angle-card">
+                            <h5>Angulo 2: "No Es un Curso"</h5>
+                            <div class="angle-headline">"Esto no es un curso de trading. Es acceso directo a alguien que sabe."</div>
+                            <p>Ataca la categoria de competidores (cursos caros) y posiciona el modelo de Francisco como diferente. Tu audiencia ha sido quemada por cursos. Esto dice "nosotros no somos eso."</p>
+                        </div>
+                        <div class="angle-card">
+                            <h5>Angulo 3: "De Platos a la Bolsa"</h5>
+                            <div class="angle-headline">"Salio de Venezuela. Empezo en restaurantes. Trabajo con Grant Cardone. Ahora te ensena a invertir."</div>
+                            <p>La historia de inmigrante exitoso resuena profundamente con tu audiencia. No es solo credibilidad. Es identificacion.</p>
+                        </div>
+                        <div class="angle-card">
+                            <h5>Angulo 4: "Precio Disruptivo"</h5>
+                            <div class="angle-headline">"La comunidad de trading mas accesible en espanol. $19.99 al mes."</div>
+                            <p>El precio es tu ventaja competitiva mas fuerte. En un mercado de cursos de $997, $19.99/mes es un pattern interrupt.</p>
+                        </div>
+                        <div class="angle-card">
+                            <h5>Angulo 5: "Anti-Estafa"</h5>
+                            <div class="angle-headline">"Francisco no tiene Telegram. No hace crypto. No te va a prometer rendimientos."</div>
+                            <p>El espacio de trading en espanol esta plagado de estafas. Tu posicionamiento anti-estafa es tu senal de confianza mas fuerte.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACCORDION 3: Ad Scripts -->
+            <div class="accordion-item reveal">
+                <button class="accordion-header">
+                    <div class="accordion-header-left">
+                        <div class="accordion-number">03</div>
+                        <span class="accordion-title">Conceptos de anuncios</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <span class="accordion-tag">3 scripts</span>
+                        <span class="accordion-arrow">+</span>
+                    </div>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <p>Tres scripts de anuncios escritos en tu voz, listos para grabar. Cada uno usa un estilo diferente para conectar con tu audiencia.</p>
+
+                        <h4>Script 1: Respuesta Directa</h4>
+                        <div class="highlight-box">
+                            <p><strong>Hook:</strong> "Quieres aprender a invertir en la bolsa pero no sabes por donde empezar? Te entiendo. Yo tampoco sabia."</p>
+                            <p style="margin-top:8px">Cuenta tu historia (platos a inversiones), explica el problema (todo en ingles, cursos caros), presenta la solucion ($19.99/mes, analisis diario, sesiones en vivo). CTA: "El link esta en mi bio. Deja el miedo y entra."</p>
+                        </div>
+
+                        <h4>Script 2: Liderado por Pruebas</h4>
+                        <div class="highlight-box">
+                            <p><strong>Hook:</strong> "Trabaje 5 años al lado de Grant Cardone. Te voy a decir lo mas importante que aprendi sobre el dinero."</p>
+                            <p style="margin-top:8px">Abre con la credencial mas fuerte (Grant Cardone). Ensenanza clave: el dinero no se guarda, se invierte. Presenta la comunidad como el lugar donde compartes como lo haces.</p>
+                        </div>
+
+                        <h4>Script 3: Valor Educativo</h4>
+                        <div class="highlight-box">
+                            <p><strong>Hook:</strong> "Muchas personas me preguntan: Francisco, cual es la diferencia entre invertir y hacer trading? Te lo explico en 60 segundos."</p>
+                            <p style="margin-top:8px">Ensena algo real en 60 segundos (invertir vs. trading). Posiciona la comunidad como el lugar para aprender ambos. Cierra con el precio y la accesibilidad.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACCORDION 4: Landing Page Preview -->
+            <div class="accordion-item reveal">
+                <button class="accordion-header">
+                    <div class="accordion-header-left">
+                        <div class="accordion-number">04</div>
+                        <span class="accordion-title">Landing page en vivo</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <span class="accordion-tag">Pagina completa</span>
+                        <span class="accordion-arrow">+</span>
+                    </div>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <p>Construimos una landing page completa para tu comunidad Discord. Usa tus colores (#111111, #FFEE58, #503AA8), tu tipografia (Manrope), y tu voz.</p>
+
+                        <h4>Secciones incluidas</h4>
+                        <ul>
+                            <li>Hero con headline que ataca el dolor principal de tu audiencia</li>
+                            <li>Seccion de problemas (4 dolores especificos de tu audiencia)</li>
+                            <li>Seccion de solucion con tu mecanismo unico (3 pasos)</li>
+                            <li>Prueba social con testimonios formateados y banner de seguidores</li>
+                            <li>Lead magnet con captura de email (recurso gratis para los que no estan listos)</li>
+                            <li>Oferta completa con stack de valor y precio</li>
+                            <li>Seccion sobre ti con tu historia y credenciales</li>
+                            <li>CTA final con urgencia emocional</li>
+                            <li>FAQ con 7 preguntas que manejan objeciones</li>
+                        </ul>
+
+                        <p>La pagina es responsive (funciona en movil), tiene animaciones suaves, y esta lista para usar.</p>
+
+                        <a href="https://henryqueroa.github.io/francisco-cuevas-landing/" class="live-page-link" target="_blank" rel="noopener">
+                            Ver pagina en vivo &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACCORDION 5: VSL Outline -->
+            <div class="accordion-item reveal">
+                <button class="accordion-header">
+                    <div class="accordion-header-left">
+                        <div class="accordion-number">05</div>
+                        <span class="accordion-title">Guion de VSL</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <span class="accordion-tag">Outline completo</span>
+                        <span class="accordion-arrow">+</span>
+                    </div>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <p>Un outline completo para un Video Sales Letter de 4-5 minutos. Listo para grabar.</p>
+
+                        <h4>Seccion 1: Hook (0:00 - 0:30)</h4>
+                        <div class="highlight-box">
+                            <p>"Yo llegue a este pais sin saber que era una accion. Empece lavando platos. Hoy invierto en la bolsa de valores y en bienes raices. Y todo lo que aprendi te lo puedo ensenar por menos de lo que gastas en Netflix al mes."</p>
+                        </div>
+
+                        <h4>Seccion 2: Problema (0:30 - 1:30)</h4>
+                        <p>Pinta el cuadro del aspirante a inversionista hispanohablante: todo en ingles, cursos caros, miedo a perder dinero, estafas por todos lados, dinero perdiendo valor en el banco.</p>
+
+                        <h4>Seccion 3: Solucion (1:30 - 2:30)</h4>
+                        <p>Presenta el modelo de comunidad: analisis diario, sesiones en vivo, Zoom semanal. No es un curso. Es aprender en tiempo real con alguien que lo hace con su propio dinero. $19.99/mes.</p>
+
+                        <h4>Seccion 4: Credibilidad (2:30 - 3:15)</h4>
+                        <p>Tu historia: Venezuela, restaurantes, 5 años con Grant Cardone, negocio propio, inversiones activas. 928K seguidores. "Casi un millon de personas me siguen porque no vendo humo."</p>
+
+                        <h4>Seccion 5: Oferta (3:15 - 4:00)</h4>
+                        <p>Stack de valor completo: analisis pre-mercado, sesiones en vivo, Zoom semanal, canales de opciones, videos educativos, comunidad, sesiones 1-a-1 selectivas. Todo por $19.99. "Un cafe te cuesta $5. Cuatro cafes al mes y tienes acceso a todo esto."</p>
+
+                        <h4>Seccion 6: CTA (4:00 - 4:30)</h4>
+                        <div class="highlight-box">
+                            <p>"Si quieres aprender a invertir de verdad, en espanol, con alguien que lo hace con su propio dinero, entra a la comunidad. Si te quieres hacer millonario manana, este no es el lugar. Pero si estas dispuesto a aprender, yo te enseno. $19.99 al mes. Cancelas cuando quieras. Deja el miedo y entra."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process">
+        <div class="container">
+            <div class="process-title reveal">Como trabajamos</div>
+            <h2 class="reveal">Un proceso simple. Resultados reales.</h2>
+            <div class="process-grid">
+                <div class="process-step reveal">
+                    <div class="step-num">1</div>
+                    <h4>Diagnostico</h4>
+                    <p>Analizamos tu negocio, tu audiencia y tu mercado para encontrar donde esta el cuello de botella que frena tu crecimiento.</p>
+                </div>
+                <div class="process-step reveal">
+                    <div class="step-num">2</div>
+                    <h4>Estrategia</h4>
+                    <p>Disenamos el plan: oferta, mensajes, embudos, y canales. Todo basado en datos reales de tu negocio, no plantillas genericas.</p>
+                </div>
+                <div class="process-step reveal">
+                    <div class="step-num">3</div>
+                    <h4>Ejecucion</h4>
+                    <p>Construimos todo: paginas, anuncios, emails, embudos. Lo entregamos listo para implementar. Tu no tocas nada.</p>
+                </div>
+                <div class="process-step reveal">
+                    <div class="step-num">4</div>
+                    <h4>Optimizacion</h4>
+                    <p>Medimos resultados. Ajustamos lo que no funciona. Escalamos lo que si. Crecimiento predecible, no suerte.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box reveal">
+                <h2>Listo para implementar todo esto?</h2>
+                <p>Todo lo que ves arriba fue construido especificamente para Francisco en las Redes. Imagina lo que podemos hacer trabajando juntos.</p>
+                <a href="#" class="cta-button">Agenda una llamada de 15 minutos</a>
+                <p class="cta-note">Sin compromisos. Hablamos de tu negocio y vemos si tiene sentido trabajar juntos.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>Preparado especificamente para Francisco en las Redes. Abril 2026.</p>
+            <p style="margin-top: 8px;">Zytrom. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Accordion
+        document.querySelectorAll('.accordion-header').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const wasActive = item.classList.contains('active');
+                document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+                if (!wasActive) item.classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
